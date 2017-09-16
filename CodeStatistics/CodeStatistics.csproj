@@ -22,7 +22,11 @@
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Release (&#xD;&#xA;  del &quot;$(TargetDir)CodeStatistics.runtimeconfig.dev.json&quot;&#xD;&#xA;  echo @dotnet CodeStatistics.dll &gt; &quot;$(TargetDir)CodeStatistics.bat&quot;&#xD;&#xA;)" />
+    <Exec Command="if $(ConfigurationName) == Release (&#xD;&#xA;  mkdir &quot;$(TargetDir)..\PublishOutput&quot;&#xD;&#xA;  echo @dotnet CodeStatistics.dll &gt; &quot;$(TargetDir)..\PublishOutput\~CodeStatistics.bat&quot;&#xD;&#xA;)" />
   </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Antlr4" Version="4.6.4" />
+  </ItemGroup>
 
 </Project>
